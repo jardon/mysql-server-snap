@@ -65,3 +65,5 @@ parts:
       - mysql-server-8.0
     override-build: |
       cp -r /var/lib/mysql* $CRAFT_PART_INSTALL/var/lib/
+    override-stage: |
+      echo "stage"
