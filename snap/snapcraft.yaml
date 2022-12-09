@@ -39,6 +39,7 @@ apps:
     daemon: simple
     install-mode: disable
     plugs:
+      - network
       - network-bind
   mysqldumpslow:
     command: usr/bin/mysqldumpslow
@@ -74,10 +75,6 @@ parts:
     plugin: nil
     stage-packages:
       - mysql-server-8.0
-    override-stage: |
-      snapcraftctl stage
-      sed -i "s:/var/run/mysqld/mysqld.sock:/etc/mysqld.sock:g" $CRAFT_STAGE/etc/mysql/mysql.conf.d/mysqld.cnf
-      sed -i "s:# sock:sock:g" $CRAFT_STAGE/etc/mysql/mysql.conf.d/mysqld.cnf
   wrapper:
     plugin: dump
     source: snap/local

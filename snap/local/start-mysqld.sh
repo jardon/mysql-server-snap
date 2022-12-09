@@ -6,8 +6,10 @@ if [ ! -f "${CONFIG_DIR}/initialized" ]; then
         echo "configuration folder ${CONFIG_DIR} does not exist."
         echo "copying default config to ${CONFIG_DIR}"
         cp -r $SNAP/etc/mysql $SNAP_COMMON
+        sed -i "s:/var/run/mysqld/mysqld.sock:$SNAP_COMMON/mysqld.sock:g" $SNAP_COMMON/mysql/mysql.conf.d/mysqld.cnf
+        sed -i "s:# sock:sock:g" $SNAP_COMMON/mysql/mysql.conf.d/mysqld.cnf
+        sed -i "s:/var/log/mysql/error.log:$SNAP_COMMON/error.log:g" $SNAP_COMMON/mysql/mysql.conf.d/mysqld.cnf
         touch $CONFIG_DIR/initialized
-        grep -r sock /etc/mysql > $SNAP_COMMON/sock.txt
 fi
 
-$SNAP/usr/sbin/mysqld --user=root
+$SNAP/usr/sbin/mysqld --defaults-file=$SNAP_COMMON/mysql/mysql.conf.d/mysqld.cnf
