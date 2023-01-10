@@ -11,6 +11,9 @@ description: |
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: strict # use 'strict' once you have the right plugs and slots
 
+system-usernames:
+  snap_daemon: shared
+
 layout:
   /var/lib/mysql-files: 
     bind: $SNAP_DATA/var/lib/mysql-files
