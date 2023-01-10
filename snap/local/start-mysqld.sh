@@ -15,4 +15,5 @@ if [ ! -f "${CONFIG_DIR}/initialized" ]; then
         touch $CONFIG_DIR/initialized
 fi
 
-$SNAP/usr/sbin/mysqld --defaults-file=$CONFIG_DIR/mysql.conf.d/mysqld.cnf
+$SNAP/usr/bin/setpriv --clear-groups --reuid snap_daemon \
+  --regid snap_daemon -- $SNAP/usr/sbin/mysqld --defaults-file=$CONFIG_DIR/mysql.conf.d/mysqld.cnf

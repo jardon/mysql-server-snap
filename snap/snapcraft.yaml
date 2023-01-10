@@ -78,6 +78,7 @@ parts:
     plugin: nil
     stage-packages:
       - mysql-server-8.0
+      - util-linux
   wrapper:
     plugin: dump
     source: snap/local
