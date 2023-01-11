@@ -19,6 +19,8 @@ layout:
     bind: $SNAP_DATA/var/lib/mysql-files
   /var/lib/mysql:
     bind: $SNAP_DATA/var/lib/mysql
+  /var/log/mysql:
+    bind: $SNAP_DATA/var/log/mysql
   /etc/mysql:
     bind: $SNAP_COMMON/mysql
   /var/mysqld:
